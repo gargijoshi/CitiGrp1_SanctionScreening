@@ -6,6 +6,6 @@ import com.citi.sanction_transaction.model.TransactionDB;
 
 public interface TransactionService {
 	List<TransactionDB> getAllTransactions();
-	void SanctionTransaction();
+	void SanctionTransaction(String file);
 	int checkIfValid(TransactionDB transaction);
 }

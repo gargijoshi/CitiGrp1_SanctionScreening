@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -57,6 +59,7 @@ public class FileUploadController {
 	}
 
 	@PostMapping("/")
+//	@GetMapping("/")
 	public String handleFileUpload(@RequestParam("file") MultipartFile file,
 			RedirectAttributes redirectAttributes) {
 		
@@ -65,7 +68,10 @@ public class FileUploadController {
 				"You successfully uploaded " + file.getOriginalFilename() + "!");
 
 //		return "redirect:/uploadForm";
+		System.out.println("File uploaded: " + file.getOriginalFilename());
+		redirectAttributes.addFlashAttribute("file", file.getOriginalFilename());
 		return "redirect:/sanction";
+//		return "redirect:/list";
 	}
 
 	@ExceptionHandler(StorageFileNotFoundException.class)

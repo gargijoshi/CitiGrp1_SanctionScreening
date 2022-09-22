@@ -22,7 +22,7 @@ public class TransactionServiceImpl implements TransactionService {
 
 	@PostMapping("/sanction")
 	@Override
-	public void SanctionTransaction() {
+	public void SanctionTransaction(String file) {
 		System.out.println("Mapping!");
 		transactionRepository.sanctiontransactions();
 	}	
