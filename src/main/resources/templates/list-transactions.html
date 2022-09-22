@@ -1,0 +1,53 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	
+	<head>
+		<title>Transactions List</title>
+		
+		<link rel="stylesheet" 
+			href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" 
+			integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" 
+			crossorigin="anonymous" />
+	</head>
+	
+	<body>
+		
+		<div class="container">
+		
+			<h3>Transactions List</h3>
+			
+			<hr/>
+		
+			<table class="table table-bordered table-striped">
+			
+				<thead>
+					<tr>
+						<th>TransactionRefNo</th>
+						<th>Value Date </th>
+						<th>Payer Name</th>
+						<th>Payer Account No</th>
+						<th>Payee Name </th>
+						<th>Payee Account No</th>
+						<th>Amount</th>
+						<th>Validation</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="transaction: ${transactions}">
+						<td th:text="${transaction.TransactionRefNo}" />
+						<td th:text="${transaction.ValueDate}" />
+						<td th:text="${transaction.PayerName}" />
+						<td th:text="${transaction.PayerAccountNo}" />
+						<td th:text="${transaction.PayeeName}" />
+						<td th:text="${transaction.PayeeAccountNo}" />
+						<td th:text="${transaction.Amount}" />
+						<td th:text="${transaction.validateStatus}" />
+					</tr>
+				</tbody>
+				
+			</table>
+		</div>
+		
+		
+	</body>
+	
+</html>
