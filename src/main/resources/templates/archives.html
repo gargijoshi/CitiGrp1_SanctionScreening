@@ -1,14 +1,20 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 	
 	<head>
-		<title>Transactions List</title>
+		<title>Archives</title>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" 
 			href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" 
 			integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" 
 			crossorigin="anonymous" />
 			
-			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" 
+			href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" 
+			integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" 
+			crossorigin="anonymous" />
+			
+					<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
     
     <!-- Google Fonts -->
@@ -34,22 +40,6 @@
   margin: 0;
   padding: 0;
   list-style: none;
-}
-
-.main-nav a:hover {
-  background-color: #99b3ff;
-}
-h2,
-a {
-color: #34495e;
-text-decoration: none;
-}
-h3
-{
-text-align:centre;
-padding-top:5%;
-color: #A9A9A9;
-font-weight:bold;
 }
 
   .image {
@@ -90,8 +80,6 @@ padding-left: 350px;
 font-weight:bold;
 }
 /* -------------------------------------------------------------------------------------------- */
-
-
 
 .header {
 padding-top: .5em;
@@ -138,10 +126,72 @@ overflow: auto;
 }
 .table-wrapper-scroll-y {
 display: block;
-} 
+}
+
+.tb_container{
+            width: 80%;
+            align-self: center;
+            padding-left: 300px;
+            
+            padding-top: 50px;            
+        } 
 
 
-	</style>
+
+/* ----------------------Table Scrollbar------------------------- */
+
+table.scrolldown {
+            width: 100%;
+            height: 50%;  
+            /* border-collapse: collapse; */
+            border-spacing: 0;
+            
+        }
+          
+        /* To display the block as level element */
+        table.scrolldown tbody, table.scrolldown thead {
+            display: block;
+        } 
+          
+        thead tr th {
+            height: 40px; 
+            line-height: 40px;
+        }
+          
+        table.scrolldown tbody {
+              
+            /* Set the height of table body */
+            height: 50px; 
+              
+            /* Set vertical scroll */
+            overflow-y: auto;
+              
+            /* Hide the horizontal scroll */
+            overflow-x: hidden; 
+        }
+          
+        tbody { 
+            
+        }
+          
+        tbody td, thead th {
+            width : 100%;
+            border-right: 2px;
+        }
+        td {
+            text-align:left;
+        }
+       /* tr:nth-child(even){background-color: #9FC1FD;} */ 
+
+/* -------------------------------------------------------------- */
+
+
+</style>
+	<script>
+		function callMe(){
+			console.log("Calling you!");
+		}
+	</script>
 <body bg="">
     <nav>
       <img src="../static/images/login_logo.png" th:src="@{images/login_logo.png}" class="logo" alt="">
@@ -149,50 +199,36 @@ display: block;
         <li><a href="/uploadForm"><i class="fa fa-fw fa-home"></i>Home</a></li>
         <li><a href="/visualize"><i class="fa fa-pie-chart"></i>Report</a></li>
         <li><a href="/archives"><i class="fa fa-fw fa-database"></i>Archives</a></li>
-        <li><a href="/logout"><i class="fa fa-fw fa-user"></i>Logout</a></li>
+        <li><a href="/login"><i class="fa fa-fw fa-user"></i>Logout</a></li>
       </ul>
     </nav>
+
+		<form method="GET" action="/archives">
 		<div class="container">
 		
-			<center><h3 style="padding-top: 20px;">Sanctioned Transaction List</h3></center>
+			<center><h3>Archives</h3></center>
 			
 			<hr/>
-		
-		   <!-- <div class="table-wrapper-scroll-y my-custom-scrollbar"> --> 
-	
-			<table id="transaction" class="table table-striped" style="width:100%">
+		</div>
+		</form>
+        <div class="tb_container">
+		   
+		   
+		<table id="archiveFiles" class="table scrolldown" >
 			
-				<thead>
-					<tr style="background-color: #6099fd; color:#263D65; font-size:medium; font-weight:bold;">
+								<thead>
+					<tr style="background-color: #6099fd; color:#263D65; font-size:large; font-weight:bold;">
 					
-						<th >TransactionRefNo</th>
-						<th >Value Date </th>
-						<th >Payer Name</th>
-						<th >Payer Account No</th>
-						<th >Payee Name </th>
-						<th >Payee Account No</th>
-						<th >Amount</th>
-						<th >Validation</th>
-						<th >Sanction</th>
+						<th >Files</th>			
+						<th> </th>			
 					</tr>
 				</thead>
-				<tbody><!--  style="height:250px; overflow-y: auto; overflow-x: hidden; color:#263D65;">-->
-					<tr th:each="transaction: ${transactions}">
-						<td th:text="${transaction.TransactionRefNo}" />
-						<td th:text="${transaction.ValueDate}" />
-						<td th:text="${transaction.PayerName}" />
-						<td th:text="${transaction.PayerAccountNo}" />
-						<td th:text="${transaction.PayeeName}" />
-						<td th:text="${transaction.PayeeAccountNo}" />
-						<td th:text="${transaction.Amount}" />
-						<td>
-						<span th:if="${transaction.validateStatus == 1}" style="color:green"> Valid </span>
-						<span th:unless="${transaction.validateStatus == 1}" style="color:red"> Invalid </span>
-						</td>					
-						<td>
-						<span th:if="${transaction.sanctionStatus == 1}" style="color:green"> Pass </span>
-						<span th:unless="${transaction.sanctionStatus == 1}" style="color:red"> Fail </span>
-						</td>							
+				<tbody style="height:250px; overflow-y: auto; overflow-x: hidden; color:#263D65;">
+					<tr th:each="file: ${files}" style="color:#263D65;">
+						<td th:text="${file.fileName}" style="color:#263D65;"/>
+						<td> <a th:href="@{/list-transactions/{file}(file=${file.fileName})}">
+						<img src="../static/images/csv2.png" th:src="@{images/csv2.png}" style="height:30px;"/>
+						</a></td>
 					</tr>
 				</tbody>
 				
@@ -205,9 +241,14 @@ display: block;
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('#transaction').DataTable();
+            $('#archiveFiles').DataTable();
         });
     </script>
+		</div>   
+		   
+	
+			<!--</div>-->
+		
 		
 		
 	</body>

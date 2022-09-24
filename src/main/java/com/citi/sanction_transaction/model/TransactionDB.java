@@ -55,7 +55,7 @@ public class TransactionDB {
 	private int sanctionStatus;
 	
 	@Column(columnDefinition = "varchar(35) default 'NULL'")
-	private String FileName;
+	private String fileName;
 	
 	//Inner Join
 	
@@ -187,11 +187,11 @@ public class TransactionDB {
 	}
 	
 	public String getFileName() {
-		return FileName;
+		return fileName;
 	}
 
-	public void setFileName(String fileName) {
-		FileName = fileName;
+	public void setFileName(String file) {
+		fileName = file;
 	}
 
 	public TransactionDB() {
@@ -203,12 +203,12 @@ public class TransactionDB {
 		return "TransactionDB [TransactionID=" + TransactionID + ", TransactionRefNo=" + TransactionRefNo
 				+ ", ValueDate=" + ValueDate + ", PayerName=" + PayerName + ", PayerAccountNo=" + PayerAccountNo
 				+ ", PayeeName=" + PayeeName + ", PayeeAccountNo=" + PayeeAccountNo + ", Amount=" + Amount
-				+ ", validateStatus=" + validateStatus + ", sanctionStatus=" + sanctionStatus + ", FileName=" + FileName
+				+ ", validateStatus=" + validateStatus + ", sanctionStatus=" + sanctionStatus + ", FileName=" + fileName
 				+ "]";
 	}
 
 	public TransactionDB(String transactionRefNo, Date valueDate, String payerName, String payerAccountNo,
-			String payeeName, String payeeAccountNo, Double amount, int validateStatus, String fileName) {
+			String payeeName, String payeeAccountNo, Double amount, int validateStatus, String file_Name) {
 		super();
 		TransactionRefNo = transactionRefNo;
 		ValueDate = valueDate;
@@ -218,11 +218,11 @@ public class TransactionDB {
 		PayeeAccountNo = payeeAccountNo;
 		Amount = amount;
 		this.validateStatus = validateStatus;
-		FileName = fileName;
+		fileName = file_Name;
 	}
 
 	public TransactionDB(String transactionRefNo, Date valueDate, String payerName,
-			String payerAccountNo, String payeeName, String payeeAccountNo, Double amount, String fileName) {
+			String payerAccountNo, String payeeName, String payeeAccountNo, Double amount, String file_Name) {
 		super();
 		TransactionRefNo = transactionRefNo;
 		ValueDate = valueDate;
@@ -231,7 +231,7 @@ public class TransactionDB {
 		PayeeName = payeeName;
 		PayeeAccountNo = payeeAccountNo;
 		Amount = amount;
-		FileName = fileName;
+		fileName = file_Name;
 	}
 
 

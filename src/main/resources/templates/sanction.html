@@ -1,21 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>File Upload UI Design</title>
-    <!-- <link rel="stylesheet" href="styles.css"> -->
-    <link rel="stylesheet" 
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	
+	<head>
+		<title>Transactions List</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" 
 			href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" 
 			integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" 
 			crossorigin="anonymous" />
-    <style>
-
+			
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+    
+    <!-- Google Fonts -->
+<link  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+       rel="stylesheet"/>
+	</head>
+	<style>
+	@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");	
         *{
             font-family: 'Montserrat', sans-serif;
             list-style: none;
@@ -29,137 +30,7 @@
             /* background: rgb(216, 223, 223); */
             color: #63686e;         
         }
-        .banner-img
-        {
-            /* background-image: url(upload2.jpg); */
-            filter: blur(5px);
-            background-size: cover;
-        }
-        .wrapper
-        {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%,-50%);
-            width: 1000px;
-            height: 500px;
-            background: #e8e8ed;;
-            background-blend-mode: luminosity;
-            border-top-left-radius: 30px;
-            border-top-right-radius: 30px;
-            border-radius: 30px;
-            box-shadow: 12px 12px 22px;
-        }
-            
-        .title
-        {
-            background: #dedee9;
-            padding: 15px;
-            font-size: 18px;
-            /* width: calc(100% - 20px); */
-            color: rgb(30, 31, 32);
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 30px;
-        }   
-
-        .Sanction label{
-            display: block;
-            background-color: white;
-            border: 2px dashed #030303;
-            padding: 15px;
-            width: calc(100% - 20px);
-            margin: 10px;
-            text-align: center;
-            cursor: pointer;
-            margin-bottom: 0px;
-        }
-        .Sanction #Sanction{
-            outline: none;
-            opacity: 0;
-            width: 0;
-        }
-        .Sanction span{
-            font-size: 14px;
-            color: #030303;
-        }
-        
-        .Sanction label:hover span{
-            text-decoration: underline;
-        }
-        .btn1
-        {
-            background-color: #3f4f7d;
-            color: white;
-            height: 50px;
-            width:30%;
-            border-radius: 20px;
-        }
-        .btn1:hover
-        {
-            background-color: white;
-            border: 1px solid;
-            color: #3f4f7d;
-        }
-        input{
-            /* background-color: black;
-            color: white; */
-            border: 2px solid #0c0c0c;
-            height: 50px;
-            width:40%;
-            border-radius: 10px;
-        }
-
-        .choose_file__input {
-        display: none;
-        }
-
-        .choose_file__button {
-        -webkit-appearance: none;
-        background: #0f0f0f;
-        border: 2px solid #0c0c0c;
-        height: 50px;
-        width:30%;
-        border-radius: 20px;
-        outline: none;
-        padding: 0.5em 0.8em;
-        margin-right: 15px;
-        color: #ffffff;
-        font-size: 1em;
-        }
-
-        .choose_file__button:active {
-        background: #050505;
-        }
-
-        .choose_file__button:hover
-        {
-            background: white;
-            border: 1px solid;
-            color: black;
-        }
-
-        .choose_file__label {
-        max-width: 250px;
-        font-size: 0.95em;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
-        font-family: "Quicksand", sans-serif;
-        }
-
-        		<!--Navbar-->
-		* {
-box-sizing: border-box;
-}
-body {
-font-family: 'Montserrat', sans-serif;
-line-height: 1.6;
-margin: 0;
-min-height: 100vh;
-}
-ul {
+	ul {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -169,46 +40,56 @@ ul {
   background-color: #99b3ff;
 }
 h2,
-h3,
 a {
 color: #34495e;
-}
-
-a {
 text-decoration: none;
 }
-
-
-
-.logo {
-margin: 0;
-font-size: 1.45em;
-  color:blue;
+h3
+{
+text-align:centre;
+padding-top:4%;
+color: #A9A9A9;
+font-weight:bold;
 }
 
-.main-nav {
-margin-top: 5px;
+  .image {
+    padding-top: 145px;
+    width: 80%;
+    transition: transform 1.1s ease-in-out;
+    transition-delay: 0.4s;
+    padding-bottom: 2px;
+  }
+  .logo {
+    height: 50px;
+    padding-left: 20px;
+  }
 
+  /* nav bar -------------------------------------------------------------------------------------------- */
+    
+  nav{
+background:#6099fd;
+height:63px;
+overflow: hidden;
 }
-.logo a,
-.main-nav a {
-padding: 10px 15px;
-text-transform: uppercase;
-text-align: center;
-display: block;
+  nav ul{
+float:right;
+margin-right:20px;
+}
+  nav ul li{  
+display:inline-block;
+padding-top: 20px;
+padding-right: 20px;
+}
+nav ul li a{
+  color: white;
+}
+label.logo{
 color:white;
+font-size:35px;
+padding-left: 350px;
+font-weight:bold;
 }
-
-.main-nav a {
-color: white;
-font-size: .99em;
-}
-
-.main-nav a:hover {
-color: #3f4f7d;
-background-color:white;
-border-radius:10px;
-}
+/* -------------------------------------------------------------------------------------------- */
 
 
 
@@ -257,69 +138,107 @@ overflow: auto;
 }
 .table-wrapper-scroll-y {
 display: block;
-}      
-    </style>
-</head>
-<body>
-<header class="header">
-<h1 class="logo"><a href="#">CITI</a></h1>
-      <ul class="main-nav">
-          <li><a href="#"><i class="fa fa-fw fa-home"></i>Home</a></li>
-          <li><a href="#"><i class="fa fa-fw fa-search"></i>Search</a></li>
-          <li><a href="#"><i class="fa fa-fw fa-database"></i>See Archives</a></li>
-          <li><a href="#"><i class="fa fa-fw fa-user"></i>Logout</a></li>
+} 
+
+.Sanction label{
+            display: block;
+            background-color: white;
+            /* border: 2px dashed #030303; */
+            padding: 15px;
+            width: calc(100% - 20px);
+            margin: 10px;
+            text-align: center;
+            cursor: pointer;
+            margin-bottom: 0px;
+        }
+        .Sanction #Sanction{
+            outline: none;
+            opacity: 0;
+            width: 0;
+        }
+        .Sanction span{
+            font-size: 14px;
+            color: #030303;
+        }
+       
+        .Sanction label:hover span{
+            text-decoration: underline;
+        }
+        .btn1
+        {
+            background-color: #6099fd;
+            color: white;
+            height: 50px;
+            width:30%;
+            border-radius: 20px;
+        }
+        .btn1:hover
+        {
+            background-color: white;
+            border: 1px solid;
+            color: #3f4f7d;
+        }
+        
+
+        
+	</style>
+<body bg="">
+    <nav>
+      <img src="../static/images/login_logo.png" th:src="@{images/login_logo.png}" class="logo" alt="">
+      <ul>
+        <li><a href="/uploadForm"><i class="fa fa-fw fa-home"></i>Home</a></li>
+        <li><a href="/visualize"><i class="fa fa-pie-chart"></i>Report</a></li>
+        <li><a href="/archives"><i class="fa fa-fw fa-database"></i>Archives</a></li>
+        <li><a href="/login"><i class="fa fa-fw fa-user"></i>Logout</a></li>
       </ul>
-</header>
-   <div class="banner-img"></div>
-   <div class="wrapper p-5">
-          <script>  
+    </nav>
+		<div class="container">
+		<script>  
             function GetFileName(){
-            	with(document.forms.Sanction){
-            		var fName = name.value;
-            		console.log(fName);
-            	}            	
+            with(document.forms.Sanction){
+            var fName = name.value;
+            console.log(fName);
+            }            
             }
-                        
-            function RedirectTo(){            	
-            	console.log("Redirecting to list");            	
-            	window.location.href = "/resources/templates/list-transactions.html";
+                       
+            function RedirectTo(){            
+            console.log("Redirecting to list");            
+            window.location.href = "/resources/templates/list-transactions.html";
             }
             </script>
 
         <form method="POST" enctype="multipart/form-data" action="/list-transactions">
             <div class="Sanction">
-                <label for="Sanction1">
-                    <input type="text" name="name" autocomplete="off" required onchange="GetFileName(this)"/>
-                                           
+                <label for="Sanction1">    
                         <input type="submit" name="Sanction" value="Sanction" class="btn1" onsubmit="RedirectTo()">          
                 </label>
                 <br/>
             </div>
-            
-        </form>
-        
-        	<div class="container">
+           
+        </form>       
 		
-			<h3>Transactions List</h3>
+			<center><h3 style="padding-top: 20px;">Validated Transactions</h3></center>
 			
 			<hr/>
-		    <div class="table-wrapper-scroll-y my-custom-scrollbar">
-			<table class="table table-bordered table-striped mb-0">
+		
+		   <!-- <div class="table-wrapper-scroll-y my-custom-scrollbar"> --> 
+		 <!--    <div class="tb_container"> -->
+			<table id="transaction" class="table table-striped" style="width:100%">
 			
 				<thead>
-					<tr>
-						
-						<th scope="col">TransactionRefNo</th>
-						<th scope="col">Value Date </th>
-						<th scope="col">Payer Name</th>
-						<th scope="col">Payer Account No</th>
-						<th scope="col">Payee Name </th>
-						<th scope="col">Payee Account No</th>
-						<th scope="col">Amount</th>
-						<th scope="col">Validation</th>
+					<tr  style="background-color: #6099fd; color:#263D65; font-size:medium; font-weight:bold;">
+					
+						<th >TransactionRefNo</th>
+						<th >Value Date </th>
+						<th >Payer Name</th>
+						<th >Payer Account No</th>
+						<th >Payee Name </th>
+						<th >Payee Account No</th>
+						<th >Amount</th>
+						<th >Validation</th>						
 					</tr>
 				</thead>
-				<tbody>
+				<tbody> <!--  style="height:250px; overflow-y: auto; overflow-x: hidden; color:#263D65;">  -->
 					<tr th:each="transaction: ${transactions}">
 						<td th:text="${transaction.TransactionRefNo}" />
 						<td th:text="${transaction.ValueDate}" />
@@ -329,17 +248,27 @@ display: block;
 						<td th:text="${transaction.PayeeAccountNo}" />
 						<td th:text="${transaction.Amount}" />
 						<td>
-						<span th:if="${transaction.validateStatus == 1}"> Pass </span>
-						<span th:unless="${transaction.validateStatus == 1}"> Fail </span>
-						</td>
+						<span th:if="${transaction.validateStatus == 1}" style="color: green"> Valid </span>
+						<span th:unless="${transaction.validateStatus == 1}" style="color:red"> Invalid </span>
+						</td>															
 					</tr>
 				</tbody>
 				
 			</table>
-			</div>
-		</div>
+			<!--  </div>  -->
 	
-    </div>
-
-</body>
+			<!--</div>-->
+		</div>
+						<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#transaction').DataTable();
+        });
+    </script>
+		
+		
+	</body>
+	
 </html>
