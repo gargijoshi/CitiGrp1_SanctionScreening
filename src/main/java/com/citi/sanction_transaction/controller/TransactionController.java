@@ -54,8 +54,8 @@ public class TransactionController {
 	public ModelAndView getCount() {
 		int validatePass = transRepo.countByValidateStatus(1);
 		int validateFail = transRepo.countByValidateStatus(0);
-		int sanctionPass = transRepo.countBySanctionStatus(0);
-		int sanctionFail = transRepo.countBySanctionStatus(1);
+		int sanctionPass = transRepo.countBySanctionStatus(1);
+		int sanctionFail = transRepo.countBySanctionStatus(0);
 		ModelAndView mav = new ModelAndView("visualize");
 		float validate = (float)(validatePass)/(validatePass + validateFail);
 		float sanction = (float)(sanctionPass)/(sanctionPass + sanctionFail);

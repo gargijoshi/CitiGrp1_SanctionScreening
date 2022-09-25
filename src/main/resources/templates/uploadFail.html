@@ -212,6 +212,33 @@ font-size:35px;
 padding-left: 350px;
 font-weight:bold;
 }
+
+/*Alert Dialog*/
+.container1{
+    width: 370px;
+    height: 125px;
+    padding: 2rem;
+    background-color: #dfbe9f;
+    border-radius: 10px;
+    display: none;
+    z-index:7;
+    padding-top:0px;
+    position:absolute;
+    right:15;
+    color:#4d4d4d;
+    overflow:auto;
+    
+}
+.container1 img{
+    margin-left: 19rem;
+    cursor: pointer;
+    height: 3.5vh;
+}
+.container1 h3{
+    margin-bottom: 1rem;
+    text-align: center;
+}
+/**/
 /* -------------------------------------------------------------------------------------------- */
 </style>
 </head>
@@ -228,7 +255,7 @@ font-weight:bold;
     <div class="container">
         <div class="forms-container">
                 <!-- login in input -->
-                <form action="/" class="signin-signup" method="post"  enctype="multipart/form-data">
+                <form action="/uploadBlank" class="signin-signup" method="get"  enctype="multipart/form-data">
                     <h2>Upload</h2>   
                         <input type='file' id='inputTypeFile' multiple name="file">
                         <script>
@@ -242,6 +269,10 @@ font-weight:bold;
         <div class="panels-container">
             <div class="panel left-panel">
                 <div class="content">
+                <div class="container1" style="margin-top:50px;">
+        <img src="../static/images/Close-36.png" th:src = "@{images/Close-36.png}" class="close" />
+        <h5>Upload Fail. <br/> Please Upload CSV File!</h5>
+</div>
                     <img src="../static/images/login_logo.png" th:src = "@{images/login_logo.png}" class="logo" alt="">
                     <p>A Bank that Champions Excellence!</p>
                     <h3>Sanction Screening of Payments <br> Transactions</h3>
@@ -250,5 +281,18 @@ font-weight:bold;
             </div>
         </div>
     </div>
+    <script>
+document.querySelector(".close").addEventListener("click" , function(){
+    document.querySelector(".container1").style.display = "none";
+    window.location.href="/uploadForm";
+});
+
+window.addEventListener("load" , function(){
+    setTimeout(
+        function open(event){
+            document.querySelector(".container1").style.display = "block";
+        },50)});
+</script>
+    
 </body>
 </html>

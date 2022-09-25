@@ -63,7 +63,13 @@ public class FileUploadController {
 	public String handleFileUpload(@RequestParam("file") MultipartFile file,
 			RedirectAttributes redirectAttributes) {
 		
-		storageService.store(file);
+		String msg = storageService.store(file);
+		if(!msg.equals("Success")) {
+			System.out.println("True!" + msg);
+			return msg;
+		}
+		else {
+		System.out.println("msg: " + msg);
 		redirectAttributes.addFlashAttribute("message",
 				"You successfully uploaded " + file.getOriginalFilename() + "!");
 
@@ -72,7 +78,20 @@ public class FileUploadController {
 		redirectAttributes.addFlashAttribute("file", file.getOriginalFilename());
 		return "redirect:/sanction";
 //		return "redirect:/list";
+		}
 	}
+	
+	@GetMapping({"/uploadBlank", "/uploadBlank"})
+    public String uploadBlankFile()
+    {
+    return "uploadBlank";
+    }
+	
+	@GetMapping({"/uploadFail", "/uploadFail"})
+    public String uploadFileFail()
+    {
+    return "uploadFail";
+    }
 
 	@ExceptionHandler(StorageFileNotFoundException.class)
 	public ResponseEntity<?> handleStorageFileNotFound(StorageFileNotFoundException exc) {

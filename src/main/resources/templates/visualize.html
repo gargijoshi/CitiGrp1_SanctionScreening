@@ -34,7 +34,7 @@
     padding-left: 90px;
   }
     .image {
-    padding-top: 145px;
+    padding-top: 300px;
     width: 80%;
     transition: transform 1.1s ease-in-out;
     transition-delay: 0.4s;
@@ -117,10 +117,10 @@
 
   .left-panel {
     /* height: 0px; */
-    padding-top: 100px;
+    padding-top: 50px;
     background-color: #6099fd;
     pointer-events: all;
-    /* padding: 3rem 17% 2rem 12%; */
+    /*padding: 3rem 17% 2rem 12%;*/ 
   }
 
   .panel .content {
@@ -142,7 +142,7 @@
   }
 
   .image {
-    padding-top: 60px;
+    padding-top: 120px;
     padding-left: 150px;
     width: 90%;
     transition: transform 1.1s ease-in-out;
@@ -153,8 +153,8 @@
     height: 100px;
   }
   .report{
-    padding-top: 200px;
-    padding-left: 700px;
+    padding-top: 50px;
+    padding-left: 600px;
   }
   body{
     margin: 0;
@@ -208,7 +208,6 @@ font-weight:bold;
     <nav>
         <label class="logo">Uploads</label>
         <ul>
-           <li></li>
           <li><a href="/uploadForm"><i class="fa fa-fw fa-home"></i></a></li>        
           <li><a href="/visualize"><i class="fa fa-pie-chart"></i></a></li>
           <li><a href="/archives"><i class="fa fa-fw fa-database"></i></a></li>
@@ -219,20 +218,24 @@ font-weight:bold;
     <div class="panels-container">
     <div class="panel left-panel">
         <div class="content">
-            <img src="../static/images/login_logo.png" th:src = "@{images/login_logo.png}" class="logo" alt="" th:href="@{/uploadForm}"></img>
+            <img src="../static/images/login_logo.png" th:src = "@{images/login_logo.png}" class="logo" alt=""></img>
             <p>A Bank that Champions Excellence!</p>
             <h3>Sanction screening of payments transactions</h3>
         </div>
         <img src="../static/images/report.svg" th:src = "@{images/report.svg}" class="image" alt=""> </img>        
     </div>
 </div>
+<h3 style="padding-left: 800px; padding-top: 70px; color:green;">Percentage of Passed Transactions:<span style="color:green;" th:text='${sanctionPassPer}'></span>%</h3>
+
+  <h3 style="padding-left: 800px; color:red;">Percentage of Failed Transactions:<span style="color:red;" th:text='${sanctionFailPer}'></span>%</h3>
 <div class="report">
+  <!-- <img src="../citi/block.jpg" th:src = "@{images/upload_logo.svg}" class="block" alt=""> </img>  -->
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-3d.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
 <form method="GET" action="/visualize">
-<div id="container" style="height: 400px">
+<div id="container" style="height: 500px">
     
 </div>
 </form>
@@ -247,7 +250,7 @@ beta : 0
 }
 },
 title : {
-text : 'Sanction Report'
+text : 'Sanction Report',
 },
 tooltip : {
 pointFormat : '{series.name}: <b>{point.percentage:.1f}%</b>'

@@ -43,18 +43,22 @@ public class FileSystemStorageService implements StorageService {
 	}
 
 	@Override
-	public void store(MultipartFile file) {
+	public String store(MultipartFile file) {
 		try {
 			if (file.isEmpty()) {
-				throw new StorageException("Failed to store empty file.");
+//				throw new StorageException("Failed to store empty file.");
+				System.out.println("Blank!");
+				return "redirect:/uploadBlank";
 			}
 			
 			String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 			FileDB fileDB = new FileDB(fileName, file.getContentType());
 			
 			if(!new CSVHelper().hasCSVFormat(file)) {
-				throw new StorageException("Cannot store file");
+//				throw new StorageException("Cannot store file");
 //				System.exit(0);
+				System.out.println("Incorrect Format");
+				return "redirect:/uploadFail";
 			}			
 			fileDBRepo.save(fileDB);			
 			
@@ -80,6 +84,7 @@ public class FileSystemStorageService implements StorageService {
 		}catch(Exception e) {
 			System.out.print(e.getMessage()	);
 		}
+		return "Success";
 	}
 
 	@Override
